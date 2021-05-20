@@ -7,6 +7,7 @@ $routes = array(
 );
 
 $url = ltrim($_SERVER['REQUEST_URI'], '/');
+
 foreach ($routes as $route){
 	if( preg_match($route['url'], $url, $match)){
 		$view = $route['view'];
@@ -18,22 +19,9 @@ foreach ($routes as $route){
 	}
 }
 
-if(empty($match)){
-	require_once ('lay/html/404.php');
-	print_r ($match);
+if( empty($match) ){
+	include 'errors/404.php';
 	exit;
 }
-
-extract($match);
-if (!empty($match['request_alias'])){
-	$_SESSION['request_alias'] = $match['request_alias'];	
-   echo $_SESSION['request_alias'];	
-}
-/*
-// $id - ID категории
-// $product_alias - alias продукта
-// $view - вид для подключения
-// include "";
-*/
 
 ?>
