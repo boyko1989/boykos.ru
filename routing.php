@@ -1,5 +1,6 @@
 <?php 
 $url = ltrim($_SERVER['REQUEST_URI'], '/');
+
 $routes = array(
 	array('url' => '#^$|^\?#', 'view' => 'main'),
    array('url' => '#^layout/#i', 'view' => 'layout'),
@@ -12,7 +13,7 @@ foreach ($routes as $route){
 	if( preg_match($route['url'], $url, $match)){
 		$view = $route['view'];
 		if (!empty($view) and ($view !== 'lay')){
-			include 'about/'.$view.'/index.php';
+			include '../about/'.$view.'/index.php';
 		} elseif ($view == 'lay') {
 			include $match[0];
 		}
@@ -21,8 +22,7 @@ foreach ($routes as $route){
 }
 
 if( empty($match) ){
-	include 'errors/404.php';
+	include '../errors/404.php';
 	exit;
 }
-
 ?>

@@ -4,13 +4,13 @@
 
 @font-face {
    font-family: Merriweather;
-   src: url(fonts/Merriweather/Merriweather-Regular.ttf);
+   src: url(../fonts/Merriweather/Merriweather-Regular.ttf);
 }
-
+/*
 @font-face {
    font-family: Merriweather;
    src: url(../fonts/Merriweather/Merriweather-Regular.ttf);
-}
+}*/
 
 @font-face {
    font-family: Merriweather_It;
@@ -56,7 +56,7 @@ body {
 
 body {
    line-height: 1;
-   font-family: Merriweather_regular;
+   font-family: Merriweather;
    -ms-text-size-adjust: 100%;
    -moz-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
@@ -65,7 +65,7 @@ body {
 input,
 button,
 textarea {
-   font-family: Merriweather_regular;
+   font-family: Merriweather;
 }
 
 input::-ms-clear {
@@ -1041,7 +1041,6 @@ footer {
 }
 
 .page {
-   padding: 80px 0px 0px 0px;
    -webkit-box-flex: 1;
    -ms-flex: 1 1 auto;
    flex: 1 1 auto;

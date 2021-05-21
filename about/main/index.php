@@ -1,5 +1,6 @@
 <?php 
    //echo 'Это главная';
-   include 'lay/html/head.php';
-   include 'lay/html/header.php';
+   include 'html/head.php';
+   include 'html/header.php';
+   include 'html/main_body.php';
 ?>
