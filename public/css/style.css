@@ -6,11 +6,6 @@
    font-family: Merriweather;
    src: url(../fonts/Merriweather/Merriweather-Regular.ttf);
 }
-/*
-@font-face {
-   font-family: Merriweather;
-   src: url(../fonts/Merriweather/Merriweather-Regular.ttf);
-}*/
 
 @font-face {
    font-family: Merriweather_It;
@@ -1091,7 +1086,8 @@ p {
 }
 
 .main-photo {
-   height: 500px;
+   max-height: 500px;
+   width: 400px;
 }
 
 .offer {
