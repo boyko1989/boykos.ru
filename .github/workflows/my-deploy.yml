@@ -26,4 +26,4 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
         
       - name: RSYNC to DOMAIN
-        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive ./ ubuntu@boykos.ru:/var/www/html/ > /dev/null 2>&1
+        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-missing-args --archive ./ ubuntu@${{ DOMAIN_NAME }}:/var/www/html/
