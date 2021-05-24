@@ -1,0 +1,24 @@
+name: php-deploy
+env:
+  DOMAIN_NAME: "boykos.ru"
+  
+on:
+  push:
+    branches:
+      - master
+      
+  pull_request:
+    branches:
+      - master
+
+jobs:  
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v1
+        
+      - name: RSYNC to DOMAIN
+        run: ls -la
+        # run: rsync --archive /var/www/html/ ubuntu@boykos.ru:/var/www/html/
