@@ -27,7 +27,7 @@
                   </div>
                </div>
                <div class="photo">
-                  <picture><source srcset="img/my_photo.webp" type="image/webp"><img class="main-photo" src="img/my_photo.jpg" alt=""></picture>
+                  <picture><source srcset="lay/img/my_photo.webp" type="image/webp"><img class="main-photo" src="lay/img/my_photo.jpg" alt=""></picture>
                </div>
             </div>
             <div class="main-text">
@@ -87,8 +87,8 @@
 </div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
-<script src="js/vendors.min.js"></script>
-<script src="js/app.min.js"></script>
+<script src="lay/js/vendors.min.js"></script>
+<script src="lay/js/app.min.js"></script>
 </body>
 
 </html>
