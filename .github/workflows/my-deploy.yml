@@ -17,7 +17,13 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
         
       - name: RSYNC to DOMAIN
-        run: rsync --archive ./* ubuntu@boykos.ru:/var/www/html/
+        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive ./* ubuntu@boykos.ru:/var/www/html/
