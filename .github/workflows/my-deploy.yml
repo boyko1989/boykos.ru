@@ -20,5 +20,4 @@ jobs:
         uses: actions/checkout@v1
         
       - name: RSYNC to DOMAIN
-        run: ls -la
-        # run: rsync --archive /var/www/html/ ubuntu@boykos.ru:/var/www/html/
+        run: rsync --archive ./* ubuntu@boykos.ru:/var/www/html/
