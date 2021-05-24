@@ -27,5 +27,5 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
         
       - name: RSYNC to DOMAIN
-        run: ls -ls /home/runner/work/boykos.ru/boykos.ru
+        run: cat /home/runner/work/boykos.ru/boykos.ru/.htaccess
         # run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /.* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
