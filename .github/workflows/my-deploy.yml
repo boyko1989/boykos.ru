@@ -2,6 +2,7 @@ name: php-deploy
 env:
   DOMAIN_NAME: "boykos.ru"
   USER_NAME: "ubuntu"
+  REPO_NAME: "boykos.ru"
   
 on:
   push:
@@ -27,4 +28,4 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
         
       - name: RSYNC to DOMAIN
-        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /home/runner/work/boykos.ru/boykos.ru/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
+        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
