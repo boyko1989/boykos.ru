@@ -7,9 +7,9 @@
    }
 
 // 
-   define('__DOMAIN__', $web_protocol.$_SERVER['SERVER_NAME']);
-   define('__ROOT__', __DOMAIN__."/");
+   define('DOMAIN', $web_protocol.$_SERVER['SERVER_NAME']);
+   define('ROOT', DOMAIN."/");
 
 //Каталог для функционала
-   define('__JOBS__', __ROOT__.'jobs/');
+   define('JOBS', $_SERVER['DOCUMENT_ROOT'].'/jobs/');
 ?>
