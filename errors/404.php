@@ -7,11 +7,12 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <style>
       body {
+         padding: 25px;
          max-width: 500px;
-         margin: 70px auto;
+         margin: 0px auto;
       }
       h1 {
-         font-size: 40px;
+         font-size: 30px;
          font-family: Arial;
          color: #423;
          text-align: center;
@@ -32,7 +33,7 @@
 </head>
 
 <body>
-   <h1>404 — запрашиваемой страницы не существует</h1>
+   <h1>Запрашиваемой страницы не существует</h1>
 
       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 511 511" style="enable-background:new 0 0 511 511;" xml:space="preserve">

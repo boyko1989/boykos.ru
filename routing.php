@@ -5,8 +5,9 @@ $routes = array(
 	array('url' => '#^$|^\?#', 'view' => 'main'),
    array('url' => '#^layout/#i', 'view' => 'layout'),
    array('url' => '#^linux/#i', 'view' => 'linux'),
+   array('url' => '#^makets/#i', 'view' => 'makets')
 	// array('url' => '#^lay/(?P<lang>[a-z]+/)#', 'view' => 'lay'),
-	array('url' => '#^lay/[a-z]+/[a-z]+\.[a-z]+#', 'view' => 'lay')
+	//array('url' => '#^lay/[a-z]+/[a-z]+\.[a-z]+#', 'view' => 'lay')
 );
 
 foreach ($routes as $route){
