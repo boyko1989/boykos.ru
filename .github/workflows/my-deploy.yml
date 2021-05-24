@@ -26,4 +26,4 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
         
       - name: RSYNC to DOMAIN
-        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive ./ ubuntu@${{ DOMAIN_NAME }}:/var/www/html/
+        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive ./ ubuntu@${{ env.DOMAIN_NAME }}:/var/www/html/
