@@ -1,4 +1,4 @@
-<form class="post-form" action="<?=ROOT?>messages/mail.php" method="post">
+<form class="post-form" action="<?=ROOT?>messages/mail.php" method="post" enctype=multipart/form-data>
    <input type="text" name="from" placeholder="Ваше имя">
    <div class="post-form__item">
       <input type="email" name="email" placeholder="Ваш e-mail">
