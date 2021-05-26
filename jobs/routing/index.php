@@ -4,22 +4,26 @@
 
    switch ($path[0]) {
 
-      # about
+   # main page
       case '': include '../about/main/index.php';
          break;
+      
+   # about
       case 'layout'; 
       case 'linux'; 
       case 'makets';      
          include '../about/'.$path[0].'/index.php';
          break;
-      # jobs
+   
+         # jobs
       case 'db';
       case 'messages';
       case 'testing';
       case 'request';
          include '../jobs/'.$path[0].'/index.php';
          break;
-     
+      
+   # errors
       default:
          include 'errors.php';
          break;
