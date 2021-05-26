@@ -7,7 +7,7 @@
       </div>
       <nav class="menu__body">
          <ul class="menu__list">
-            <li><a href="#" class="menu__link">Главная</a></li>
+            <li><a href="/" class="menu__link">Главная</a></li>
             <li><a href="#" class="menu__link">Контакты</a></li>
             <li><a href="#" class="menu__link">Макеты</a></li>
             <!-- <li><a href="#" class="menu__link">Темы WordPress</a></li> -->
@@ -20,5 +20,5 @@
       </div>
       <div class="login__do-enter"></div>
       </div> -->
-   </div>
-</div>
+   </div> <!-- Конец .header__menu-->
+</div> <!-- Конец .header__content-->

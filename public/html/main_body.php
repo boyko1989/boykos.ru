@@ -1,5 +1,5 @@
 <body>
-	<div class="wrapper">
+<div class="wrapper">
    <header class="header">
       <?php include "header.php";?>
    </header>
@@ -56,13 +56,12 @@
             </div>
          </div>
       </div>
-
    </main>
-<footer class="footer">
-	<div class="footer__content _container">
-	</div>
-</footer>
-	</div>
+   <footer class="footer">
+      <div class="footer__content _container">
+      </div>
+   </footer>
+</div><!--
 	<div class="popup popup_popup">
 	<div class="popup__content">
 		<div class="popup__body">
@@ -85,10 +84,10 @@
 		</div>
 	</div>
 </div>
-
+-->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
-<script src="lay/js/vendors.min.js"></script>
-<script src="lay/js/app.min.js"></script>
+   <script src="lay/js/vendors.min.js"></script>
+   <script src="lay/js/app.min.js"></script>
 </body>
 
 </html>

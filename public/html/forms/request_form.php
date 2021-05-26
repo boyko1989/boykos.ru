@@ -12,7 +12,7 @@
 <script>
    $(document).ready(function () {
       $('#summernote').summernote({
-         height: 600
+         height: 308
       });
    });
 </script>

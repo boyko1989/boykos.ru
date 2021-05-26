@@ -6,6 +6,7 @@ $routes = array(
    array('url' => '#^layout/#i', 'view' => 'layout'),
    array('url' => '#^linux/#i', 'view' => 'linux'),
    array('url' => '#^makets/#i', 'view' => 'makets'),
+	array('url' => '#^request/#i', 'view' => 'request'),
 	array('url' => '#^phpinfo/#', 'view' => 'phpinfo')
 	//array('url' => '#^lay/[a-z]+/[a-z]+\.[a-z]+#', 'view' => 'lay')
 );
