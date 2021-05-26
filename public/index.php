@@ -10,7 +10,12 @@
    // echo $path = JOBS.'routing/routing.php<br>';
    // echo $_SERVER['DOCUMENT_ROOT'];
    
-   require JOBS.'routing/routing.php';
+   require JOBS.'routing/index.php';
+   //echo $url;
 
+   echo '<br>';
+   echo '<pre>';
+   print_r($path);
+   echo '</pre>';
    // include '../jobs/routing/routing.php';
 ?>

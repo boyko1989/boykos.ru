@@ -1,14 +1,17 @@
-<?php 
-$url = ltrim($_SERVER['REQUEST_URI'], '/');
+<?php
+/*-------------------
+/ Здесь будет роутинг тем: главная страница, вёрстка (теория), Linux, макеты (практика по вёрстке)
+-------------------*/
+
+echo 'Ссылка на скрипт — '.$path[1].'<br>';
+
+$url = $path[1];
 
 $routes = array(
 	array('url' => '#^$|^\?#', 'view' => 'main'),
    array('url' => '#^layout/#i', 'view' => 'layout'),
    array('url' => '#^linux/#i', 'view' => 'linux'),
-   array('url' => '#^makets/#i', 'view' => 'makets'),
-	array('url' => '#^request/#i', 'view' => 'request'),
-	array('url' => '#^phpinfo/#', 'view' => 'phpinfo')
-	//array('url' => '#^lay/[a-z]+/[a-z]+\.[a-z]+#', 'view' => 'lay')
+   array('url' => '#^makets/#i', 'view' => 'makets')
 );
 
 foreach ($routes as $route){
@@ -16,13 +19,9 @@ foreach ($routes as $route){
 		$view = $route['view'];
 		if (!empty($view)){
 			include '../about/'.$view.'/index.php';
-		}
+		} 
 		break;
 	}
 }
 
-if( empty($match) ){
-	include '../errors/404.php';
-	exit;
-}
 ?>
