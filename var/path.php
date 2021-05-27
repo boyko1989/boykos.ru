@@ -1,6 +1,6 @@
 <?php
 // Определить протокол
-   if ($_SERVER['HTTPS'] == 1) {
+   if ((!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off'))) {
       $web_protocol = 'https://';
    } else {
       $web_protocol = 'http://';
