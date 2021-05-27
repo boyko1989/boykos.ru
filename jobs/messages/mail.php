@@ -6,5 +6,5 @@
 
    mail($email, 'Заявка с сайта boykos.ru', $message);
 
-   header("Location: /")
+   header("Location: /interactives/after_mail.php");
 ?>

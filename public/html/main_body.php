@@ -17,11 +17,11 @@
                      варианты. Давайте
                      начнём сотрудничество!</p>
                   <p class="good-message">   
-                     <?php                      
+                  <?php                      /*
                      if (isset($_SESSION['mail_message'])) {
                         echo $_SESSION['mail_message'];
                         unset($_SESSION['mail_message']);
-                     }                  
+                     }     */             
                   ?></p>
                   <div class="for-button"><a href="request/" class="primary-bottom">Обсудить задание</a>
                   </div>

@@ -10,6 +10,7 @@
       
    # about
       case 'layout'; 
+      case 'interactives'; 
       case 'linux'; 
       case 'makets';      
          include '../about/'.$path[0].'/index.php';
@@ -29,3 +30,4 @@
          break;
    }
  ?>
+ 
