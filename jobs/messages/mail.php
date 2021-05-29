@@ -2,9 +2,9 @@
    $from = $_POST['from'];
    $email = $_POST['email'];
    $tel = $_POST['tel'];
-   $message = $_POST['message'].'<br>Телефон заявителя -- '.$tel;
+   $message = $_POST['message'].'<br>Телефон заявителя -- '.$tel.'<br> Электронная почта -- '.$email;
 
-   mail($email, 'Заявка с сайта boykos.ru', $message);
+   mail('hunwiss89@gmail.com', 'Заявка с сайта boykos.ru', $message);
 
    header("Location: /interactives/after_mail.php");
 ?>
