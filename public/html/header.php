@@ -9,7 +9,7 @@
          <ul class="menu__list">
             <li><a href="/" class="menu__link">Главная</a></li>
             <li><a href="#" class="menu__link">Контакты</a></li>
-            <li><a href="#" class="menu__link">Макеты</a></li>
+            <li><a href="makets/" class="menu__link">Макеты</a></li>
             <!-- <li><a href="#" class="menu__link">Темы WordPress</a></li> -->
             <li><a href="#" class="menu__link">Обо мне</a></li>
          </ul>

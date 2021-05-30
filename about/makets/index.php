@@ -17,6 +17,17 @@
          <div class="content">
             <h1>Готовые макеты.</h1>
             <p>Здесь Вы сможете посмотреть качество моей работы как верстальщика и бесплатно скачать понравившиеся макеты для ваших сайтов.</p>
+            <div class="list_tile">
+               <ul>
+                  <li>
+                     <a href="#"><img src="http://boykos.ru.loc/about/makets/img/chrome_aLDfS25IvH.png" 
+                     width="189" height="255" alt="lorem"></a>
+                  </li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+               </ul>
+            </div>
          </div>
       </div>
    </main>
