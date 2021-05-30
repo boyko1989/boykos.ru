@@ -14,7 +14,7 @@
    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
    
-   <link rel="stylesheet" href="../../public/lay/css/style.min.css">
+   <link rel="stylesheet" href="css/style.min.css">
    <style>h1{padding: 80px 0 0 0;}</style>
    <link rel="shortcut icon" href="favicon.ico">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
 <body>
    <div class="wrapper">
       <header class="header">
-         <?php include "../public/html/header.php";?>
+         <?php include "html/header.php";?>
       </header>
       <main class="page">
          <div class="_container">
@@ -30,7 +30,7 @@
                <h1>Форма для связи</h1>
                <p>Отправьте мне описание Вашего проекта, я обдумаю детали и свяжусь с Вами. Отправляя мне Ваши данные,
                   Вы можете быть уверены, что они не попадут в спам-базы или мошенникам.</p>
-               <?php include "../public/html/forms/request_form.php";?>
+               <?php include "html/forms/request_form.php";?>
             </div>
          </div>
       </main>
@@ -38,8 +38,7 @@
          <div class="footer__content _container"></div>
       </footer>
    </div>
-   <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
-   <script src="../../public/lay/js/vendors.min.js"></script>
-   <script src="../../public/lay/js/app.min.js"></script>
+   <script src="js/vendors.min.js"></script>
+   <script src="js/app.min.js"></script>
 </body>
 </html>

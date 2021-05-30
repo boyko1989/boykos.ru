@@ -112,6 +112,16 @@ body._lock {
    overflow: hidden;
 }
 
+.service_list {
+   margin-top: 20px;
+}
+
+.service_list li {
+   list-style: none;
+   padding: 20px 70px;
+   color: #122047;
+}
+
 .wrapper {
    width: 100%;
    min-height: 100%;

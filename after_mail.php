@@ -1,7 +1,10 @@
+<?php 
+   include 'html/head.php';
+?>
 <body>
 <div class="wrapper">
    <header class="header">
-      <?php include "../public/html/header.php";?>
+      <?php include "html/header.php";?>
    </header>
    <main class="page">
       <div class="_container">
@@ -17,8 +20,8 @@
 </footer>
    </div>
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
-   <script src="../public/lay/js/vendors.min.js"></script>
-   <script src="../public/lay/js/app.min.js"></script>
+   <script src="js/vendors.min.js"></script>
+   <script src="js/app.min.js"></script>
 </body>
 
 </html>
