@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <!--https://developer.mozilla.org/ru/docs/Learn/JavaScript/First_steps/A_first_splash-->
+   <title>Игра: угадай число</title>
+
+   <style>
+      html {
+         font-family: sans-serif;
+      }
+
+      body {
+         width: 50%;
+         max-width: 800px;
+         min-width: 480px;
+         margin: 0 auto;
+      }
+
+      .lastResult {
+         color: white;
+         padding: 3px;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Игра: угадай число</h1>
+
+   <p>Мы выбрали случайное число от 1 до 100. Посмотрим, сможешь ли ты угадать его за 10 ходов или меньше. Мы тебе
+      скажем, если твой предположение будет или слишком большим, или слишком маленьким. Проиграешь — твоя квартира
+      наша...</p>
+
+   <div class="form">
+      <label for="guessField">Писани цифирь: </label>
+      <input type="text" id="guessField" class="guessField">
+      <input type="submit" value="Мой вариант" class="guessSubmit">
+   </div>
+   <p class="guesses"></p>
+   <p class="lastResult"></p>
+   <p class="lowOrHi"></p>
+   <script>
+      let randomNumber = Math.floor(Math.random() * 100) + 1;
+      console.log(randomNumber)
+      let guesses = document.querySelector('.guesses');
+      let lastResult = document.querySelector('.lastResult');
+      let lowOrHi = document.querySelector('.lowOrHi');
+      console.log(lowOrHi);
+      let guessSubmit = document.querySelector('.guessSubmit');
+      let guessField = document.querySelector('.guessField');
+
+      let guessCount = 1;
+      let resetButton;
+
+      function checkGuess() {
+
+         let userGuess = Number(guessField.value);
+         if (guessCount === 1) {
+            guesses.textContent = 'Предыдущие варианты: ';
+         }
+         guesses.textContent += userGuess + ' ';
+
+         if (userGuess === randomNumber) {
+            lastResult.textContent = 'Молодец.. возьми с полки пирожок';
+            lastResult.style.backgroundColor = 'green';
+            lowOrHi.textContent = '';
+            setGameOver();
+         } else if (guessCount === 10) {
+            lastResult.textContent = 'Продул)))';
+            setGameOver();
+         } else {
+            lastResult.textContent = 'Не правильно!!!!!';
+            lastResult.style.backgroundColor = 'red';
+            if (userGuess < randomNumber) {
+               lowOrHi.textContent = 'Маловато взял';
+            } else if (userGuess > randomNumber) {
+               lowOrHi.textContent = 'Широко шагнул';
+            }
+         }
+
+         guessCount++;
+         guessField.value = '';
+         guessField.focus();
+      }
+      guessSubmit.addEventListener('click', checkGuess);
+
+      function setGameOver() {
+         guessField.disabled = true;
+         guessSubmit.disabled = true;
+         resetButton = document.createElement('button');
+         resetButton.textContent = 'Start new game';
+         document.body.appendChild(resetButton);
+         resetButton.addEventListener('click', resetGame);
+      }
+
+      function resetGame() {
+         guessCount = 1;
+
+         const resetParas = document.querySelectorAll('.resultParas p');
+         for (let i = 0; i < resetParas.length; i++) {
+            resetParas[i].textContent = '';
+         }
+         resetButton.parentNode.removeChild(resetButton);
+         guessField.disabled = false;
+         guessSubmit.disabled = false;
+         guessField.value = '';
+         guessField.focus();
+         lastResult.style.backgroundColor = 'white';
+         randomNumber = Math.floor(Math.random() * 100) + 1
+         console.log(randomNumber)
+      }
+   </script>
