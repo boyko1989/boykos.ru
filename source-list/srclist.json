@@ -1,0 +1,23 @@
+{
+   "00-001": {
+      "title":"UX UI Design мобильных приложений",
+      "year":"2021",
+      "src-type":"course"
+   },
+   "99-999": {
+      "title": ""
+   },
+   "example":{
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "address": {
+         "streetAddress": "Московское ш., 101, кв.101",
+         "city": "Ленинград",
+         "postalCode": 101101
+      },
+      "phoneNumbers": [
+         "812 123-1234",
+         "916 123-4567"
+      ]
+   }   
+}

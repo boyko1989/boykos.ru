@@ -1056,13 +1056,23 @@ h1 {
    color: #122047;
    font-size: 36px;
    font-weight: 700;
-   margin: 20px 0px 30px 0px;
+   margin: 0px 0px 20px 0px;
    text-align: center;
-   line-height: 42px;
+   line-height:130%;
+}
+
+h2 {
+   color: #122047;
+   font-size: 28px;
+   font-weight: 500;
+   margin: 25px 0px 17px 0px;
+   text-align: center;
+   line-height: 130%;
 }
 
 a {
    color: #23be30;
+   line-height: 150%;
 }
 
 a:hover {
@@ -1321,4 +1331,32 @@ p {
 
 ._webp .page {
    background-image: url(../img/white-scratone.webp);
+}
+
+.all-contetnt{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.left-column{
+   color:#fff;
+   padding: 10px;
+   flex: 1 1 300px;
+   background-color: rgb(18, 34, 66);
+}
+.left-column h2 {
+   color: #fff;
+}
+
+.left-column ul>li {
+   padding: 3px 0px 7px 0px;
+}
+.main-text__section {
+   flex: 5 1 auto;
+   padding: 0 25px;
+}
+
+.main-text__section p {
+   padding: 0px 0px 7px 0px;
 }
