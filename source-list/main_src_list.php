@@ -1,4 +1,7 @@
 <body>
+   <div class="overlay">
+      <button class="overlay-close">Закрыть</button>
+   </div>
    <div class="wrapper">
       <header class="header">
          <?php include "../html/header.php"; ?>
@@ -11,6 +14,13 @@
                      <div class="submenu">
                         <div class="submenu-nav">
                            <a href="add.php">Добавить</a>
+                           <a href="#" id="getfilters">Фильтры</a>
+                           <!-- <select>
+                              <option>Фильтровать по ...</option>
+                              <option>Теме</option>
+                              <option>Автору</option>
+                              <option>Издателю</option>
+                           </select> -->
                         </div>
                         <div class="submenu-search">
 
@@ -64,7 +74,7 @@
 
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
    <script src="/js/vendors.min.js"></script>
-   <script src="/js/app.min.js"></script>
+   <script src="/js/app.js"></script>
 </body>
 
 </html>

@@ -1589,3 +1589,18 @@ function scroll_animate(event) {
 	//If native scroll
 	//disableScroll();
 }
+
+const filters = document.getElementById('getfilters');
+const allContent = document.querySelector('body');
+const divOfOverlay = document.querySelector('.overlay');
+const closeOverlay = document.querySelector('.overlay-close');
+
+filters.addEventListener('click', function(evt){
+	allContent.style.overflowY="hidden";
+	divOfOverlay.classList.add('active')
+});
+
+closeOverlay.addEventListener('click', function(evt){
+	allContent.style.overflowY="";
+	divOfOverlay.classList.remove('active')
+});
