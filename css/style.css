@@ -116,9 +116,10 @@ body._lock {
    margin-top: 20px;
 }
 
-.service_list li {
+.service_list li,
+.list {
    list-style: none;
-   padding: 20px 70px;
+   padding: 14px 70px;
    color: #122047;
 }
 
@@ -982,8 +983,8 @@ body.ie ._ibg img {
    transition: color 0.3s ease 0s;
 }
 
-.menu {
-   /* &__link {
+/* .menu {
+   &__link {
 		padding: 29px 10px;
 		color: rgb(53, 51, 51);
 		text-transform: uppercase;
@@ -993,8 +994,8 @@ body.ie ._ibg img {
 			border-top: 3px solid rgb(182, 123, 56);
 			background-color: rgb(230, 230, 230);
 		}
-	} */
-}
+	} 
+} */
 
 .menu__list {
    display: -webkit-box;
@@ -1064,10 +1065,20 @@ h1 {
 h2 {
    color: #122047;
    font-size: 28px;
-   font-weight: 500;
+   font-weight: 700;
    margin: 25px 0px 17px 0px;
    text-align: center;
    line-height: 130%;
+}
+
+h3 {
+   color: #122047;
+   font-size: 22px;
+   font-weight: 700;
+   margin: 2px 0px 15px 0px;
+   text-align: start;
+   line-height: 130%;
+   text-decoration: underline;
 }
 
 a {
@@ -1083,6 +1094,11 @@ p {
    font-size: 18px;
    line-height: 30px;
    color: #122047;
+}
+
+pre{
+   padding: 10px;
+   font-size: 14px;
 }
 
 .offer-text>p {
@@ -1359,4 +1375,42 @@ p {
 
 .main-text__section p {
    padding: 0px 0px 7px 0px;
+}
+
+caption{
+   padding: 20px;
+   font-size: 20px;
+   font-weight: 700;
+   text-align: start;
+   text-decoration: underline;
+}
+
+table {
+   border: 1px solid #eee;
+   table-layout: fixed;
+   width: 100%;
+   margin-bottom: 20px;
+   border-collapse: collapse;
+   overflow-x:auto;
+}
+
+table th {
+   font-weight: bold;
+   padding: 5px;
+   background: #efefef;
+   border: 1px solid #dddddd;
+}
+
+table td {
+   padding: 5px 10px;
+   border: 1px solid #eee;
+   text-align: left;
+}
+
+table tbody tr:nth-child(odd) {
+   background: #fff;
+}
+
+table tbody tr:nth-child(even) {
+   background: #F7F7F7;
 }
