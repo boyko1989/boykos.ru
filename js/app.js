@@ -1602,5 +1602,5 @@ filters.addEventListener('click', function(evt){
 
 closeOverlay.addEventListener('click', function(evt){
 	allContent.style.overflowY="";
-	divOfOverlay.classList.remove('active')
+	divOfOverlay.classList.remove('active');
 });

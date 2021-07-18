@@ -15,12 +15,6 @@
                         <div class="submenu-nav">
                            <a href="add.php">Добавить</a>
                            <a href="#" id="getfilters">Фильтры</a>
-                           <!-- <select>
-                              <option>Фильтровать по ...</option>
-                              <option>Теме</option>
-                              <option>Автору</option>
-                              <option>Издателю</option>
-                           </select> -->
                         </div>
                         <div class="submenu-search">
 
