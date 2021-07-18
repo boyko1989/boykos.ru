@@ -16,6 +16,11 @@ function json2arr($filename)
    return $contents;
 }
 
+// function arr2json($arr/*, $json*/)
+// {
+//    debug($arr);
+// }
+
 // $remove_file -- ссылка на удалённый файл
 // $safe_name   -- имя файла при сохранении
 function get_remove_file($remove_file, $safe_name)

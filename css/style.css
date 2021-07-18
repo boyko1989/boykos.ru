@@ -160,14 +160,15 @@ body._lock {
    width: 100%;
 }
 
-.select {
-   position: relative;
-}
 
-.select__item {
+/* .select {
    position: relative;
-}
+} */
 
+/* .select__item {
+   position: relative;
+} */
+/* 
 .select__title {
    color: #000;
    border: 1px solid #d9d9d9;
@@ -254,12 +255,24 @@ body._lock {
 
 .select._active .select__options {
    display: block;
+} */
+
+fieldset{
+   margin: 5px;
+   padding: 15px;
+   border: rgba(51, 51, 51, 0.301) solid 1px;
+}
+legend{
+   text-decoration: underline;
+   margin: 10px 5px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-textarea {
+input[type="search"],
+textarea,
+select {
    border: #333 solid 1px;
    border-radius: 3px;
    padding: 5px;
@@ -268,6 +281,12 @@ textarea {
    -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
+}
+
+select {
+   font-size: 16px;
+   padding: 7px;
+   font-family: Merriweather;
 }
 
 .input {
@@ -571,6 +590,12 @@ input[type="submit"]:hover {
 
 button[type="button"] {
    padding: 5px;
+   border: 1px #333 solid;
+   border-radius: 3px;
+}
+button[type="button"]:hover {
+   border: 1px rgb(182, 179, 179) solid;
+   border-radius: 3px;
 }
 
 .note-editable>p {
@@ -983,20 +1008,6 @@ body.ie ._ibg img {
    transition: color 0.3s ease 0s;
 }
 
-/* .menu {
-   &__link {
-		padding: 29px 10px;
-		color: rgb(53, 51, 51);
-		text-transform: uppercase;
-		font-family: Arial;
-		&:hover {
-			color: rgb(0, 0, 0);
-			border-top: 3px solid rgb(182, 123, 56);
-			background-color: rgb(230, 230, 230);
-		}
-	} 
-} */
-
 .menu__list {
    display: -webkit-box;
    display: -ms-flexbox;
@@ -1036,6 +1047,11 @@ body.ie ._ibg img {
 
 .icon-menu {
    display: none;
+}
+
+.submenu{
+   display: flex;
+   justify-content: space-between;
 }
 
 footer {
@@ -1196,9 +1212,9 @@ pre{
 }
 
 @media (min-width: 992px) {
-   .select__option:hover {
+   /* .select__option:hover {
       background: #d9d9d9;
-   }
+   } */
 
    .checkbox a:hover {
       text-decoration: none;

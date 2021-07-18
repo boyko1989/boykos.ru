@@ -8,44 +8,23 @@
             <div class="content">
                <div class="hello">
                   <div class="offer-text">
+                     <div class="submenu">
+                        <div class="submenu-nav">
+                           <a href="add.php">Добавить</a>
+                        </div>
+                        <div class="submenu-search">
+
+                           <input type="search" id="site-search" name="q" aria-label="Search through site content">
+
+                           <button type="button">Search</button>
+                        </div>
+                     </div>
                      <h1>Список моих учебных и справочных ресурсов</h1>
                   </div>
                </div>
                <article class="all-contetnt">
                   <section class="main-text__section">
-                     <!-- <div class="table-section">
-                        <table>
-                           <caption>Курсы</caption>
-                           <thead>
-                              <tr>
-                                 <th scope="col">Номер</th>
-                                 <th scope="col">Название</th>
-                                 <th scope="col">Объём</th>
-                                 <th scope="col">Автор</th>
-                                 <th scope="col">Издатель</th>
-                                 <th scope="col">Тема</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td>00-001</td>
-                                 <td><a href="more.php?id=00-001">UX UI Design мобильных приложений</a></td>
-                                 <td>~ 4 часа</td>
-                                 <td>Владислав Шевченко</td>
-                                 <td>ITVDN</td>
-                                 <td>UI/UX</td>
-                              </tr>
-                              <tr>
-                                 <td>00-002</td>
-                                 <td><a href="more.php?id=00-002">Дизайн и проектирование интерфейсов</a></td>
-                                 <td>~ 1,5 часа</td>
-                                 <td>Неизвестен</td>
-                                 <td>Geekbrains</td>
-                                 <td>UI/UX</td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div> -->
+
                      <?php
 
                      require_once('functions.php');
@@ -55,12 +34,9 @@
                      <ul>
                         <?php
                         foreach ($contents as $id => $content) {
-                           // echo $id . ':<br><br>';
-                           // debug($content);
 
                            echo '<a href="more.php?id=' . $id . '"><h3>' . $content['title'] . '</h3></a>';
                            echo '<p><strong>Год издания:</strong> ' . $content['year'] . '</p>';
-                           // echo '<p><strong>Описание:</strong><br> ' . $content['description'] . '</p>';
                            echo '<p><strong>Учебный центр:</strong> ' . $content['vendor'] . '</p>';
                            echo '<p><strong>Тема:</strong> ' . $content['theme'] . '</p>';
 
