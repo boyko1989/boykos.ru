@@ -1646,6 +1646,7 @@ if(locS === null){
 	type = locS.type;
 }
 
+
 if (type === 'book'){
 	document.querySelector('button[data-filter-type="book"]').classList.add('type-active');
 } else if (type === 'cours'){
@@ -1659,42 +1660,36 @@ filterOvL.addEventListener('click', function(evt){
 		autor = evt.target.options[evt.target.selectedIndex].dataset.filterAuthor;
 	} else if (tagOfEl === 'button') {		
 
-		if(type === 'all'){
-
-			console.log('Должно работать');
-			evt.target.classList.add('type-active');	
-			type = evt.target.dataset.filterType;	
-
-		} else {
-
+		
+		if(type !== 'all'){
 			if (type === 'book' && evt.target.dataset.filterType === 'cours'){
 				// При нажатии на "Курсы" - удаляются "Книги"
 				document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
-			} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
-				// При нажатии на "Книги" - удаляются "Курсы"
-				document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');					
-			}
-			// Добавляем на нажимаемую кнопку активный класс и записываем её в переменную
 				evt.target.classList.add('type-active');
 				type = evt.target.dataset.filterType;
-			
-			// Если в переменной есть "Книги" И нажимаемая кнопка "Книги" И на кнопке "Книги" активный класс, то удаляем с кнопки "Книги" активный класс и устанавливаем переменную в 'all'
-			if (type === 'book' && 
-			evt.target.dataset.filterType === 'book'){
-				document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
+			} else if (type === 'book' && evt.target.dataset.filterType === 'book'){
+				evt.target.classList.remove('type-active');
 				type = 'all';
-			}
-			// Если в переменной есть "Курсы" И нажимаемая кнопка "Курсы" И на кнопке "Курсы" активный класс, то удаляем с кнопки "Курсы" активный класс и устанавливаем переменную в 'all'
-			if (type === 'cours' && 
-			evt.target.dataset.filterType === 'cours'){
+			} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
+				// При нажатии на "Книги" - удаляются "Курсы"
 				document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
+				evt.target.classList.add('type-active');
+				type = evt.target.dataset.filterType;					
+			} else if (type === 'cours' && 
+				evt.target.dataset.filterType === 'cours'){
+				evt.target.classList.remove('type-active');
 				type = 'all';
 			}
-		}	
 
-	}
+		} else {
+			console.log('Должно работать');
+			evt.target.classList.add('type-active');	
+			type = evt.target.dataset.filterType;	
+		}
+
 	let task2render = {autor, type};
 	console.log(task2render);
 
 	localStorage.setItem('Task2Render', JSON.stringify(task2render));
-});
+}}
+);
