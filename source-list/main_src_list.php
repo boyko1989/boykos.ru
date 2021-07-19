@@ -9,7 +9,7 @@
          <li><button class="filter-btn__type" data-filter-type="cours">Курсы</button></li>
          <li>
             <select class="filter-btn__type">
-               <option data-filter-author="all" selected="selected">Все авторы</option>
+               <option data-filter-author="all">Все авторы</option>
                <option data-filter-author="ivanov">Иван Иванов</option>
                <option data-filter-author="kuchar">Кухар Богдан</option>
                <option data-filter-author="gogol">Николай Гоголь</option>

@@ -1515,11 +1515,6 @@ table tbody tr:nth-child(even) {
    text-align: center;
 }
 
-.filter-btn__type:hover {
-   background-color: rgb(190, 190, 190);
-   color:rgb(66, 49, 49);
-}
-
 .type-active{
    color: rgb(151, 151, 151);
    background-color:rgb(24, 18, 18);

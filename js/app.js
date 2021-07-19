@@ -1653,43 +1653,65 @@ if (type === 'book'){
 	document.querySelector('button[data-filter-type="cours"]').classList.add('type-active');
 }
 
+const options = document.querySelectorAll('option[data-filter-author]');
+	options.forEach(option => {
+		const textOption = option.textContent;
+		if(textOption === autor){			
+			option.setAttribute('selected', 'selected');
+		}
+	});
+
+
 filterOvL.addEventListener('click', function(evt){
 	const tagOfEl = evt.target.tagName.toLowerCase();
 	// console.log(tagOfEl);
 	if(tagOfEl === 'select'){
-		autor = evt.target.options[evt.target.selectedIndex].dataset.filterAuthor;
-	} else if (tagOfEl === 'button') {		
-
+		// autor = evt.target.options[evt.target.selectedIndex].dataset.filterAuthor;
+		autor = evt.target.options[evt.target.selectedIndex].textContent;
+		// console.log(autor);
 		
-		if(type !== 'all'){
-			if (type === 'book' && evt.target.dataset.filterType === 'cours'){
-				// При нажатии на "Курсы" - удаляются "Книги"
-				document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
-				evt.target.classList.add('type-active');
-				type = evt.target.dataset.filterType;
-			} else if (type === 'book' && evt.target.dataset.filterType === 'book'){
-				evt.target.classList.remove('type-active');
-				type = 'all';
-			} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
-				// При нажатии на "Книги" - удаляются "Курсы"
-				document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
-				evt.target.classList.add('type-active');
-				type = evt.target.dataset.filterType;					
-			} else if (type === 'cours' && 
-				evt.target.dataset.filterType === 'cours'){
-				evt.target.classList.remove('type-active');
-				type = 'all';
-			}
+		// console.log(selectText);
 
-		} else {
-			console.log('Должно работать');
-			evt.target.classList.add('type-active');	
-			type = evt.target.dataset.filterType;	
+		// selectText = ;
+	} else if (tagOfEl === 'button') {		
+			
+			if(type !== 'all'){
+				if (type === 'book' && evt.target.dataset.filterType === 'cours'){
+					// При нажатии на "Курсы" - удаляются "Книги"
+					document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
+					evt.target.classList.add('type-active');
+					type = evt.target.dataset.filterType;
+				} else if (type === 'book' && evt.target.dataset.filterType === 'book'){
+					evt.target.classList.remove('type-active');
+					type = 'all';
+				} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
+					// При нажатии на "Книги" - удаляются "Курсы"
+					document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
+					evt.target.classList.add('type-active');
+					type = evt.target.dataset.filterType;					
+				} else if (type === 'cours' && 
+					evt.target.dataset.filterType === 'cours'){
+					evt.target.classList.remove('type-active');
+					type = 'all';
+				}
+
+			} else {
+				console.log('Должно работать');
+				evt.target.classList.add('type-active');	
+				type = evt.target.dataset.filterType;	
+			}		
 		}
-
 	let task2render = {autor, type};
 	console.log(task2render);
+	// let corrSelectText = evt.target.options[evt.target.selectedIndex].textContent;
+	
+	// filterAuthor
+
+	// console.log(dataset.filterAuthor.textContent);
+
+	// let corrSelectText = evt.target.options[evt.target.selectedIndex].textContent;
+	
+	// console.log('В локальном хранилище: ',autor);
 
 	localStorage.setItem('Task2Render', JSON.stringify(task2render));
-}}
-);
+});
