@@ -1,6 +1,13 @@
 <body>
    <div class="overlay">
       <button class="overlay-close">Закрыть</button>
+      <h2 class="overlay-title">Фильтры</h2>
+      <a data-clear="true" class="overlay-clear">Очистить</a>
+      <p class="overlay-legend">Показать:</p>
+      <ul class="filter-buttons__type">
+         <li><button class="filter-btn__type" data-filter-type="book">Книги</button></li>
+         <li><button class="filter-btn__type" data-filter-type="cours">Курсы</button></li>
+      </ul>
    </div>
    <div class="wrapper">
       <header class="header">

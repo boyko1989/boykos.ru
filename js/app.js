@@ -1604,3 +1604,44 @@ closeOverlay.addEventListener('click', function(evt){
 	allContent.style.overflowY="";
 	divOfOverlay.classList.remove('active');
 });
+
+// ---- Фильтры ----
+
+// const filterBtns = document.querySelectorAll('.filter-btn__type');
+
+// for (let filterBtn of filterBtns){
+// 	filterBtn.onclick = btnClck;
+// }
+
+// function btnClck(evt){
+// 	let type = this.dataset.filterType;
+// 	console.log(type);
+// }
+
+// -----------------
+
+let filterBtns2 = document.querySelector('.filter-buttons__type');
+let listFilter = false;
+let isBookFilter = false;
+let isCoursekFilter = false;
+
+filterBtns2.addEventListener('click', function(evt){
+	listFilter = true;
+	const filterTitle = evt.target.dataset.filterType;
+	let isBtnActive = evt.target.getAttribute('class');
+		// console.log(isBtnActive);
+	if (isBtnActive === 'filter-btn__type'){
+		console.log(filterTitle);
+	} else {
+		console.log('filter-btn__type отссутствует');		
+	}
+
+});
+
+
+
+// filterBtns2.addEventListener('click', function(evt){
+// const filterTitle = evt.target.getAttribute('data-filter-type');
+// // console.log(filterTitle);
+
+// });

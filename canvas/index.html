@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# video: http://ogp.me/ns/video# ya: http://webmaster.yandex.ru/vocabularies/">
+
+<head>
+	<meta charset="utf-8">
+	<title>Поиск с canvas</title>
+	<meta name="description"
+		content="Biggest videos collection of high quality. Our entertainment portal finds the best video for you every day!">
+	<meta name="keywords" content="portal, hd, free, tube, videos, search">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+	<link rel="preconnect" href="//cdn.jsdelivr.net">
+
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="#212121">
+	<meta name="msapplication-TileColor" content="#212121">
+	<meta name="msapplication-TileImage" content="/static/engine/extend/dark/ms-icon-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/static/engine/extend/dark/ms-icon-70x70.png">
+	<meta name="msapplication-square150x150logo" content="/static/engine/extend/dark/ms-icon-150x150.png">
+	<meta name="msapplication-square310x310logo" content="/static/engine/extend/dark/ms-icon-310x310.png">
+	<meta name="theme-color" content="#212121">
+	<link rel="stylesheet" href="/static/engine/css/dark.css">
+	<style>
+		html,
+		body,
+		.main {
+			height: 100%;
+		}
+
+		.main {
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			min-height: 300px;
+		}
+
+		._search {
+			width: 80%;
+			max-width: 800px;
+			opacity: .9;
+		}
+
+		._search .s_text,
+		._search .s_btn {
+			font-size: 18px;
+			line-height: 18px;
+		}
+
+		._search .s_text {
+			border-width: 3px;
+			padding: 8px 13% 8px 12px;
+			border-radius: 0;
+		}
+
+		._search .s_btn {
+			border-width: 3px;
+			min-width: 43px;
+		}
+
+		.footer {
+			position: absolute;
+			bottom: 0;
+			padding: 0;
+			margin-bottom: 15px;
+		}
+
+		._search,
+		.footer {
+			z-index: 2;
+		}
+
+		canvas {
+			display: block;
+			vertical-align: bottom;
+		}
+
+		#particles-js {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 50% 50%;
+			top: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+	<div class="main">
+		<div class="_search">
+			<form class="s_form">
+				<input class="s_text" type="text" name="story" value="" autocomplete="off" placeholder="Search..." required>
+				<button class="s_btn" type="submit"><svg class="icon icon-search">
+						<use xlink:href="#search"></use>
+					</svg></button>
+			</form>
+		</div>
+		<div class="footer" style="display:flex;flex-flow:wrap;align-items:center;justify-content:center">
+			<div>
+				<div class="f_menu">
+					<a href="/privacy">Privacy policy</a> - <a href="/removal">Content removal</a> - <a
+						href="/contact">Contact us</a>
+				</div>
+
+			</div>
+		</div>
+		<div id="particles-js"></div>
+	</div>
+	<script src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<script>
+		particlesJS("particles-js", {
+			particles: {
+				number: {
+					value: 100,
+					density: {
+						enable: !0,
+						value_area: 800
+					}
+				},
+				color: {
+					value: "#ffffff"
+				},
+				shape: {
+					type: "circle",
+					stroke: {
+						width: 0,
+						color: "#000000"
+					},
+					polygon: {
+						nb_sides: 5
+					},
+					image: {
+						src: "img/github.svg",
+						width: 100,
+						height: 100
+					}
+				},
+				opacity: {
+					value: .5,
+					random: !1,
+					anim: {
+						enable: !1,
+						speed: 1,
+						opacity_min: .1,
+						sync: !1
+					}
+				},
+				size: {
+					value: 3,
+					random: !0,
+					anim: {
+						enable: !1,
+						speed: 40,
+						size_min: .1,
+						sync: !1
+					}
+				},
+				line_linked: {
+					enable: !0,
+					distance: 150,
+					color: "#ffffff",
+					opacity: .4,
+					width: 1
+				},
+				move: {
+					enable: !0,
+					speed: 6,
+					direction: "none",
+					random: !1,
+					straight: !1,
+					out_mode: "out",
+					bounce: !1,
+					attract: {
+						enable: !1,
+						rotateX: 600,
+						rotateY: 1200
+					}
+				}
+			},
+			interactivity: {
+				detect_on: "canvas",
+				events: {
+					onhover: {
+						enable: !0,
+						mode: "grab"
+					},
+					onclick: {
+						enable: !0,
+						mode: "push"
+					},
+					resize: !0
+				},
+				modes: {
+					grab: {
+						distance: 140,
+						line_linked: {
+							opacity: 1
+						}
+					},
+					bubble: {
+						distance: 400,
+						size: 40,
+						duration: 2,
+						opacity: 8,
+						speed: 3
+					},
+					repulse: {
+						distance: 200,
+						duration: .4
+					},
+					push: {
+						particles_nb: 4
+					},
+					remove: {
+						particles_nb: 2
+					}
+				}
+			},
+			retina_detect: !0
+		});
+	</script>
+
+	<script src="/static/engine/js/global.min.js"></script>
+	<script src="/static/engine/js/main.min.js"></script>
+
+
+
+
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () {
+				(m[i].a = m[i].a || []).push(arguments)
+			};
+			m[i].l = 1 * new Date();
+			k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k,
+				a)
+		})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		ym(61482310, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true,
+			webvisor: true
+		});
+	</script> <noscript>
+		<div><img src="https://mc.yandex.ru/watch/61482310" style="position:absolute; left:-9999px;" alt="" /></div>
+	</noscript>
+
+	<script type="text/javascript">
+		new Image().src = "//counter.yadro.ru/hit?r" + escape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
+				";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) +
+			";u" + escape(document.URL) + ";h" + escape(document.title.substring(0, 150)) + ";" + Math.random();
+	</script>
+</body>
+
+</html>
