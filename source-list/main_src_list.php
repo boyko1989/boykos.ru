@@ -7,9 +7,17 @@
       <ul class="filter-buttons__type">
          <li><button class="filter-btn__type" data-filter-type="book">Книги</button></li>
          <li><button class="filter-btn__type" data-filter-type="cours">Курсы</button></li>
+         <li>
+            <select class="filter-btn__type">
+               <option data-filter-author="all" selected="selected">Все авторы</option>
+               <option data-filter-author="ivanov">Иван Иванов</option>
+               <option data-filter-author="kuchar">Кухар Богдан</option>
+               <option data-filter-author="gogol">Николай Гоголь</option>
+            </select>
+         </li>
       </ul>
    </div>
-   <div class="wrapper">
+   <div class=" wrapper">
       <header class="header">
          <?php include "../html/header.php"; ?>
       </header>

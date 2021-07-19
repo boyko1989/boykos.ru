@@ -1501,13 +1501,18 @@ table tbody tr:nth-child(even) {
 }
 
 .filter-btn__type {
+   
    background-color: rgb(151, 151, 151);
    color:rgb(24, 18, 18);
    border: 1px solid rgb(151, 151, 151);
    padding: 10px;
-   width: 70px;
+   width: 170px;
    margin: 2px;
    border-radius: 100px;
+}
+
+.filter-btn__type > option {
+   text-align: center;
 }
 
 .filter-btn__type:hover {
@@ -1515,12 +1520,8 @@ table tbody tr:nth-child(even) {
    color:rgb(66, 49, 49);
 }
 
-.filter-btn__type-active{
+.type-active{
    color: rgb(151, 151, 151);
    background-color:rgb(24, 18, 18);
    border: 1px solid #fff;
-   padding: 10px;
-   width: 70px;
-   margin: 2px;
-   border-radius: 100px;
 }
