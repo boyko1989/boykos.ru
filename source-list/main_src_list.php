@@ -29,7 +29,7 @@
                      <div class="submenu">
                         <div class="submenu-nav">
                            <a href="add.php">Добавить</a>
-                           <a href="#" id="getfilters">Фильтры</a>
+                           <a href="" id="getfilters">Фильтры</a>
                         </div>
                         <div class="submenu-search">
 
