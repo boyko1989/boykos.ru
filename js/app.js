@@ -1652,12 +1652,6 @@ if (type === 'book'){
 	document.querySelector('button[data-filter-type="cours"]').classList.add('type-active');
 }
 
-
-
-// (locS.autor) ? autor = locS.autor : autor = 'all';
-// (locS.type) ? type = locS.type : type = 'all';
-
-
 filterOvL.addEventListener('click', function(evt){
 	const tagOfEl = evt.target.tagName.toLowerCase();
 	// console.log(tagOfEl);
@@ -1666,47 +1660,40 @@ filterOvL.addEventListener('click', function(evt){
 	} else if (tagOfEl === 'button') {		
 
 		if(type === 'all'){
+
 			console.log('Должно работать');
 			evt.target.classList.add('type-active');	
 			type = evt.target.dataset.filterType;	
+
 		} else {
+
 			if (type === 'book' && evt.target.dataset.filterType === 'cours'){
-			// При нажатии на "Курсы" - удаляются "Книги"
-			document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
-			evt.target.classList.add('type-active');
-			type = evt.target.dataset.filterType;
-		} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
-			// При нажатии на "Книги" - удаляются "Курсы"
-			document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');		
-			evt.target.classList.add('type-active');
-			type = evt.target.dataset.filterType;
-		}
-		// Добавляем на нажимаемую кнопку активный класс и записываем её в переменную
+				// При нажатии на "Курсы" - удаляются "Книги"
+				document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
+			} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
+				// При нажатии на "Книги" - удаляются "Курсы"
+				document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');					
+			}
+			// Добавляем на нажимаемую кнопку активный класс и записываем её в переменную
+				evt.target.classList.add('type-active');
+				type = evt.target.dataset.filterType;
 			
-		
-		// Если в переменной есть "Книги" И нажимаемая кнопка "Книги" И на кнопке "Книги" активный класс, то удаляем с кнопки "Книги" активный класс и устанавливаем переменную в 'all'
-		if (type === 'book' && 
-		evt.target.dataset.filterType === 'book' && 
-		document.querySelector('button[data-filter-type="book"]').classList.contains('type-active')){
-			document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
-			type = 'all';
-		}
-		// Если в переменной есть "Курсы" И нажимаемая кнопка "Курсы" И на кнопке "Курсы" активный класс, то удаляем с кнопки "Курсы" активный класс и устанавливаем переменную в 'all'
-		if (type === 'cours' && 
-		evt.target.dataset.filterType === 'cours' && 
-		document.querySelector('button[data-filter-type="cours"]').classList.contains('type-active')){
-			document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
-			type = 'all';
-		}
-		}
-
-
-		
+			// Если в переменной есть "Книги" И нажимаемая кнопка "Книги" И на кнопке "Книги" активный класс, то удаляем с кнопки "Книги" активный класс и устанавливаем переменную в 'all'
+			if (type === 'book' && 
+			evt.target.dataset.filterType === 'book'){
+				document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
+				type = 'all';
+			}
+			// Если в переменной есть "Курсы" И нажимаемая кнопка "Курсы" И на кнопке "Курсы" активный класс, то удаляем с кнопки "Курсы" активный класс и устанавливаем переменную в 'all'
+			if (type === 'cours' && 
+			evt.target.dataset.filterType === 'cours'){
+				document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
+				type = 'all';
+			}
+		}	
 
 	}
 	let task2render = {autor, type};
-	// console.log('Автор: ',autor);
-	// console.log('Тип контента',type);
 	console.log(task2render);
 
 	localStorage.setItem('Task2Render', JSON.stringify(task2render));
