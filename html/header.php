@@ -14,11 +14,11 @@
             <li><a href="#" class="menu__link">Обо мне</a></li>
          </ul>
       </nav>
-      <!-- <div class="login">
-      <div class="login__not-enter">
-      <a href="signin/">Войти</a>
+      <div class="login">
+         <div class="login__not-enter">
+            <a href="signin/">Войти</a>
+         </div>
+         <div class="login__do-enter"></div>
       </div>
-      <div class="login__do-enter"></div>
-      </div> -->
    </div> <!-- Конец .header__menu-->
 </div> <!-- Конец .header__content-->
