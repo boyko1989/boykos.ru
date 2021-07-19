@@ -1663,24 +1663,26 @@ filterOvL.addEventListener('click', function(evt){
 	// console.log(tagOfEl);
 	if(tagOfEl === 'select'){
 		autor = evt.target.options[evt.target.selectedIndex].dataset.filterAuthor;
-	} else if (tagOfEl === 'button') {
+	} else if (tagOfEl === 'button') {		
 
-		if (type === 'book' && evt.target.dataset.filterType === 'cours'){
+		if(type === 'all'){
+			console.log('Должно работать');
+			evt.target.classList.add('type-active');	
+			type = evt.target.dataset.filterType;	
+		} else {
+			if (type === 'book' && evt.target.dataset.filterType === 'cours'){
 			// При нажатии на "Курсы" - удаляются "Книги"
 			document.querySelector('button[data-filter-type="book"]').classList.remove('type-active');
+			evt.target.classList.add('type-active');
+			type = evt.target.dataset.filterType;
 		} else if (type === 'cours' && evt.target.dataset.filterType === 'book'){
 			// При нажатии на "Книги" - удаляются "Курсы"
 			document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');		
+			evt.target.classList.add('type-active');
+			type = evt.target.dataset.filterType;
 		}
-
-		// if(type === 'all'){
-		// 	evt.target.classList.add('type-active');	
-		// 	type = evt.target.dataset.filterType;	
-		// }
-
 		// Добавляем на нажимаемую кнопку активный класс и записываем её в переменную
-		evt.target.classList.add('type-active');
-		type = evt.target.dataset.filterType;	
+			
 		
 		// Если в переменной есть "Книги" И нажимаемая кнопка "Книги" И на кнопке "Книги" активный класс, то удаляем с кнопки "Книги" активный класс и устанавливаем переменную в 'all'
 		if (type === 'book' && 
@@ -1696,6 +1698,10 @@ filterOvL.addEventListener('click', function(evt){
 			document.querySelector('button[data-filter-type="cours"]').classList.remove('type-active');
 			type = 'all';
 		}
+		}
+
+
+		
 
 	}
 	let task2render = {autor, type};
