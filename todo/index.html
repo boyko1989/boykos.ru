@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
+   <title>Методы массивов</title>
+   <!-- <script src="js/script.js" defer></script> -->
+</head>
+
+<body>
+   <div class="wrapper">
+      <div class="container">
+         <main>
+            <div class="container">
+               <h1>Методы массивов</h1>
+
+               <h2>Метод indexOf()</h2>
+               <p>Позволяет возвратить индекс искомого элемента в массиве при первом совпадении или -1, если элемент не
+                  найден.</p>
+               <pre>
+   const arr1 = ['красный',
+      'синий',
+      'зелёный',
+      'белый',
+      'чёрный',
+      'серый'
+   ];
+
+   > arr1.indexOf()
+   < -1
+   > arr1.indexOf('синий')
+   < 0
+   > arr1.indexOf('белый')
+   < 3
+</pre>
+               <p>Используется строгое сравнение.</p>
+               <p>Вторым параметром <strong>можно</strong> передать целое число, определяющее индекс массива, с которого
+                  начнётся
+                  поиск элементов массива</p>
+
+               <h3>Примеры использования</h3>
+               <p>Допустим, нам нужно продолжить поиск искомого элемента в массиве после первого и последующих
+                  совпадений, вполть до конца массива. Для этого воспользуемся циклом, в котором будем добавлять в новый
+                  массив индексы совпадений с нашим поисковым выражением.
+                  Цикл пройдётся по всем элементам массива. Условие, при котором тело цикла будет срабатывать —
+                  отсутствие неудовлетворительного результата сравнения текущего элемента с искомым словом.</p>
+               <pre>
+   const arr1 = ['красный',
+      'синий',
+      'зелёный',
+      'белый',
+      'чёрный',
+      'серый'
+   ];
+
+   const search = 'красный';
+   let index = arr1.indexOf(search);
+
+   let foundValues = [];
+
+   while (index !== -1) {
+   foundValues.push(index);
+   index = arr1.indexOf(search, index + 1);
+   }
+
+   console.log(foundValues);
+</pre>
+               <p>Пара дополнений:</p>
+               <ul>
+                  <li>У строки тоже есть <strong>indexOf()</strong>
+                  </li>
+                  <li>При поиске следует помнить о нюансах таких значений как <strong>NaN</strong>. Каждый
+                     <strong>NaN</strong> — это уникальный объект и два таких значения не могут быть равны</li>
+               </ul>
+               <p>Для тренеровки, перепишу этот цикл под <em>for</em>
+
+                  <pre>
+for (let i = 0; i < arr1.length; i++ ) { 
+   if (index !==-1) { 
+      foundValues.push(index); index=arr1.indexOf(search, index + 1); 
+   } 
+} 
+
+console.log('После for',foundValues);
+</pre>
+                  <p>Ну и forEach:</p>
+                  <pre>arr1.forEach(element => {
+   if (index !== -1) {
+      foundValues.push(index);
+      index = arr1.indexOf(search, index + 1);
+   }
+});
+
+console.log('После forEach',foundValues);</pre>
+
+                  <p>Предположим, нам нужно составить массив из уникальных элементов:</p>
+
+                  <pre>const arr1 = ['красный',
+      'синий',
+      'зелёный',
+      'белый',
+      'чёрный',
+      'серый'
+   ];
+
+let foundUnic = [];
+
+const contains = (arr,arrUnic) => {
+   arr.forEach(element => {
+      if (arrUnic.indexOf(element) === -1) {
+         arrUnic.push(element);
+      }
+   });
+
+   return arrUnic;
+}
+
+contains(arr1,foundUnic);
+console.log(foundUnic);
+</pre>
+                  <p>Работает это так: мы заранее объявляем массив, в который будем складывать уникальные значения.
+                     Затем, проверяемы массив и нашу "коробочку" мы передаём в качестве аргументов функции.В функции
+                     проходимся по каждому элементу, передавая его аргументом <strong>indexOf()</strong> и если в
+                     массиве уникальных значений нет такого элемента, то мы его записываем в этот массив. И так
+                     обрабатываем все элементы первоначального массива.</p>
+
+
+                  <h3>Метод lastIndexOf()</h3>
+                  <p>То же, что и <strong>indexOf()</strong>, но поиск ведёт в обратном направлении</p>
+
+                  <h2>Метод find()</h2>
+                  <p>В случае совпадения возвращает элемент или <em>undefined</em>, если ничего не найдено.</p>
+                  <p>Очень хорошо подходит в случаях, если нужно найти элементв массиве объектов с определённым
+                     условием.
+                  </p>
+
+                  <pre>// Данные
+
+const users = [
+   {id: 1, name: 'Вася'},
+   {id: 2, name: 'Петя'},
+   {id: 3, name: 'Маша'},
+   {id: 4, name: 'Ваня'},
+];
+
+// Функции
+
+const found = users.find(item => item.id == 1);
+
+// Логика
+
+console.log(found);           // сам массив
+console.log(found.name);      // значение нужного ключа найденного объекта
+</pre>
+                  <p>Допустим, нам нужно принять номер пользователя от посетителя, тогда можно сделать следующее:</p>
+                  <pre>
+let soughtId = parseInt(prompt('Введите номер пользователя'));
+const found = users.find(item => item.id === soughtId);
+
+// Логика
+
+console.log(found.name);
+</pre>
+                  Если вернуться к задаче нахождения всех уникальных значений массива, то можно сделать так:
+
+                  <pre>
+   // Данные
+
+   const users = [
+      {id: 1, name: 'Вася'},
+      {id: 2, name: 'Петя'},
+      {id: 3, name: 'Маша'},
+      {id: 4, name: 'Ваня'},
+      {id: 5, name: 'Сирожа'},
+      {id: 6, name: 'Света '},
+      {id: 7, name: 'Маша'},
+      {id: 8, name: 'Петя'},
+      {id: 9, name: 'Вася'},
+   ];
+
+   let unicUsers = [];
+
+   // Функции
+
+   const contains = (arr,arrUnic) => {
+      arr.forEach(arrEl => {
+         const nameItem = arrEl.name;
+         const found = arrUnic.find(item => item === nameItem);
+
+         if (!found) {
+            arrUnic.push(nameItem);
+         }
+      });
+   }
+
+   // Логика
+
+   contains(users,unicUsers);
+   console.log(unicUsers);
+
+</pre>
+                  <p>Пока работал над примером, уяснил для себя важный момент сам по себе метод <strong>find()</strong>
+                     уже является циклом. То есть нет нужды при помощи
+                     <strong>forEach</strong> проходить по формируемому массиву. Но по первоналальному массиву нужно
+                     пройти обязательно, иначе в результат попадёт элемент в виде пустого массива.</p>
+
+                  <h2>Метод splice()</h2>
+                  <p>Изменяет содержимое массива, удаляя существующие элементы и/или добавляя новые.</p>
+
+                  <div class="container">
+         </main>
+      </div>
+   </div>
+
+</body>
+
+</html>
