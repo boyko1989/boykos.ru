@@ -39,4 +39,19 @@
 			text-align: center;
 		}
 	</style>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-54BGYX933K"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-54BGYX933K');
+	</script>
+	<meta name="yandex-verification" content="de1a8e3f50956457" />
+
 </head>
