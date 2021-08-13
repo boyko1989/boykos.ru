@@ -1,6 +1,5 @@
 {
- "name": "Веб-разработчик Павел Бойко",
- "short_name": "Веб-разработчик",
+ "name": "App",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -38,7 +37,5 @@
    "type": "image\/png",
    "density": "4.0"
   }
- ],
- "theme_color": "#AB6000",
-   "background_color": "#AB6000"
+ ]
 }
