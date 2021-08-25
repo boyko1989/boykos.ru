@@ -3,49 +3,48 @@ env:
   DOMAIN_NAME: "boykos.ru"
   USER_NAME: "ubuntu"
   REPO_NAME: "boykos.ru"
-  
+
   # DEV server
   DOMAIN_NAME_DEV: "sverchok.ddns.net"
   USER_NAME_DEV: "p_boyko"
-  
+
 on:
   push:
     branches:
       - master
-      
+
   pull_request:
     branches:
       - master
 
-jobs:  
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v1
-        
+
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.newpariskey }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
-        
+
       - name: RSYNC to DOMAIN
-        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/ --delete
-  
+        run: rsync -e --delete-before "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
 #  deploy_dev:
 #    runs-on: ubuntu-latest
 #
 #    steps:
 #      - name: Check out repository
 #        uses: actions/checkout@v1
-#        
+#
 #      # Setup key
 #      - run: set -eu
 #      - run: mkdir "$HOME/.ssh"
 #      - run: echo "${{ secrets.sverchokkey }}" > "$HOME/.ssh/key"
 #      - run: chmod 600 "$HOME/.ssh/key"
-#      
+#
 #      - name: RSYNC to DOMAIN_DEV
 #        run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --ignore-errors --archive /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME_DEV }}:/var/www/html/
