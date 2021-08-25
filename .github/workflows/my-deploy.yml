@@ -31,6 +31,8 @@ jobs:
       - run: echo "${{ secrets.newpariskey }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
 
+      - run: ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ env.USER_NAME}}@${{ env.DOMAIN_NAME }} rm -rf /var/www/html/*
+
       - name: RSYNC to DOMAIN
       - run: ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ env.USER_NAME}}@{{ env.DOMAIN_NAME }} touch test_from_aws.txt
       - run: rsync -avz --delete --progress -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
