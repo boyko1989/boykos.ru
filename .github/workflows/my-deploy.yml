@@ -30,9 +30,10 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.newpariskey }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
-
+      
+      - run: ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no ${{ env.USER_NAME}}@{{ env.DOMAIN_NAME }} touch test_from_aws.txt 
+      
       - name: RSYNC to DOMAIN
-        run: 
         run: rsync -avz --delete --progress -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
 #  deploy_dev:
 #    runs-on: ubuntu-latest
