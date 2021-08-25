@@ -32,6 +32,7 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
 
       - name: RSYNC to DOMAIN
+        run: 
         run: rsync -avz --delete --progress -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" /home/runner/work/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}/* ${{ env.USER_NAME }}@${{ env.DOMAIN_NAME }}:/var/www/html/
 #  deploy_dev:
 #    runs-on: ubuntu-latest
