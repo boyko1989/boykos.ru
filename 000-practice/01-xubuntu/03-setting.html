@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+            <div id="readme" class="Box-body readme blob js-code-block-container p-5 p-xl-6 gist-border-0">
+                <article class="markdown-body entry-content container-lg" itemprop="text">
+                    <h1 dir="auto"><a id="user-content-настройка" class="anchor" aria-hidden="true" href="#настройка"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Настройка</h1>
+                    <p dir="auto">Хорошая <a href="https://wiki.dieg.info/xfce" rel="nofollow">статья</a></p>
+                    <p dir="auto">Очень настоятельно советую в качестве домашнего каталога пользователя заводить пустой каталог. Всю
+                        же информацию лучше каким-либо образом резервировать и восстанавливать по мере необходимости. У меня
+                        произошёл достаточно неприятный эффект, который отнял у меня много времени. После примонтирования моего
+                        домашнего каталога, который находился у меня на другом диске, установленный Google Chrome запускался, но не
+                        отображался. Что я только не делал, но проблему ничего не решало. В конце концов я сделал <em>rsync</em>-ом
+                        бэкап и почистил домашнюю папку.</p>
+                    <p dir="auto">Конечно, можно было очистить только каталоги <code>~/.cache</code>, <code>~/.config</code> и
+                        <code>~/.local</code>, чтобы потом, для восстановления привычного реима работы программ, закидывать в
+                        <code>~/.config</code> файлы интересующих пакетов, но я решил заодно навести порядок.</p>
+                    <h2 dir="auto"><a id="user-content-настройка-сети" class="anchor" aria-hidden="true" href="#настройка-сети"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Настройка сети</h2>
+                    <p dir="auto">По умолчанию Xubuntu находит в сети DHCP сервер и запрашивает у него IP-адрес. Но мы установим
+                        статичесий адрес. Причём сделаем это и для Ethernet интерфейса и для Wi-Fi. В Xubuntu сеть настраивается
+                        через Netplan, поэтому открываем файл <code>/etc/netplan/config.yaml</code>. Прописываем в нём следующую
+                        конфигурацию:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="network:
+              ethernets:
+                enp2s0f0:
+                  addresses:
+                    - 192.168.2.101/21
+                  routes:
+                    - to: default
+                      via: 192.168.0.1
+                  nameservers:
+                    addresses:
+                      - 192.168.0.1
+                      - 77.88.8.88
+                      - 77.88.8.2
+                    search: [aprt]
+              wifis:
+                wlp3s0:
+                  dhcp4: no
+                  dhcp6: no
+                  addresses:
+                    - 192.168.2.102/21
+                  nameservers:
+                    addresses:
+                      - 192.168.0.1
+                      - 77.88.8.88
+                      - 77.88.8.2
+                  access-points:
+                    &quot;Your_wifis_SSID&quot;:
+                      password: &quot;password&quot;
+              version: 2
+              renderer: NetworkManager">
+                        <pre>network:
+              ethernets:
+                enp2s0f0:
+                  addresses:
+                    - 192.168.2.101/21
+                  routes:
+                    - to: default
+                      via: 192.168.0.1
+                  nameservers:
+                    addresses:
+                      - 192.168.0.1
+                      - 77.88.8.88
+                      - 77.88.8.2
+                    search: [aprt]
+              wifis:
+                wlp3s0:
+                  dhcp4: no
+                  dhcp6: no
+                  addresses:
+                    - 192.168.2.102/21
+                  nameservers:
+                    addresses:
+                      - 192.168.0.1
+                      - 77.88.8.88
+                      - 77.88.8.2
+                  access-points:
+                    <span class="pl-s"><span class="pl-pds">"</span>Your_wifis_SSID<span class="pl-pds">"</span></span>:
+                      password: <span class="pl-s"><span class="pl-pds">"</span>password<span class="pl-pds">"</span></span>
+              version: 2
+              renderer: NetworkManager</pre>
+                    </div>
+                    <h2 dir="auto"><a id="user-content-предварительные-настройки" class="anchor" aria-hidden="true"
+                            href="#предварительные-настройки"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Предварительные настройки</h2>
+                    <ol dir="auto">
+                        <li>Чтобы постоянно не вводить пароль при работе с административными правами, нужно отключить запрос. Для
+                            этого нужно отредактировать файл <code>/etc/sudoers</code>. Напрямую этого делать не рекомендуется,
+                            потому воспольуемся командой:</li>
+                    </ol>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo visudo">
+                        <pre>sudo visudo</pre>
+                    </div>
+                    <p dir="auto">Находим строку <code>%sudo</code> и меняем её содержимое на:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="%sudo ALL=(ALL:ALL) NOPASSWD:ALL">
+                        <pre>%sudo ALL=(ALL:ALL) NOPASSWD:ALL</pre>
+                    </div>
+                    <ol start="2" dir="auto">
+                        <li>Так как для конфигурирования нужно будет установить ряд пакетов, то в начале производим обновления.</li>
+                    </ol>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoclean -y &amp;&amp; sudo apt autoremove -y">
+                        <pre>sudo apt update <span class="pl-k">&amp;&amp;</span> sudo apt upgrade -y <span class="pl-k">&amp;&amp;</span> sudo apt autoclean -y <span class="pl-k">&amp;&amp;</span> sudo apt autoremove -y</pre>
+                    </div>
+                    <h2 dir="auto"><a id="user-content-оптимизации-для-работы-с-ssd" class="anchor" aria-hidden="true"
+                            href="#оптимизации-для-работы-с-ssd"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Оптимизации для работы с SSD</h2>
+                    <p dir="auto">Они состоят в выборе правильной файловой системы, переносе с SSD подкачки и настройки
+                        триммирования. Первое и второе было сделано в процессе установки, а триммированием сейчас займёмся.</p>
+                    <p dir="auto">Что такое триммирование? Это применение метода TRIMM) Этот метод проверяет какие ячейки уже не
+                        содержатся в файловой системе и могут быть использованы накопителем для физического удаления. Это позволяет
+                        выровнять износ по всему пространству накопителя. По умолчанию эта операция проводится раз в неделю, но мы
+                        сделаем так, чтобы она проходила ежедневно.</p>
+                    <p dir="auto">Проверяем установки таймера:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo systemctl cat fstrim.timer">
+                        <pre>sudo systemctl cat fstrim.timer</pre>
+                    </div>
+                    <p dir="auto">В параметре <code>OnCalendar=</code> мы можем увидеть текущее значение. Нам нужно добавить в этот
+                        файл ещё один параметр <code>OnCalendar=</code>, но уже со значением <code>daily</code>. Поэтому делаем так:
+                    </p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo mkdir -v /etc/systemd/system/fstrim.timer.d
+            sudo vim /etc/systemd/system/fstrim.timer.d/override.conf
+            
+            # В последнем дописываем следующее
+            
+            [Timer]
+            OnCalendar=
+            OnCalendar=daily
+            
+            # Применяем изменения
+            
+            sudo systemctl daemon-reload">
+                        <pre>sudo mkdir -v /etc/systemd/system/fstrim.timer.d
+            sudo vim /etc/systemd/system/fstrim.timer.d/override.conf
+            
+            <span class="pl-c"><span class="pl-c">#</span> В последнем дописываем следующее</span>
+            
+            [Timer]
+            OnCalendar=
+            OnCalendar=daily
+            
+            <span class="pl-c"><span class="pl-c">#</span> Применяем изменения</span>
+            
+            sudo systemctl daemon-reload</pre>
+                    </div>
+                    <p dir="auto">Ещё раз выводим файл таймера и удостоверяемся, что он был изменён.</p>
+                    <h2 dir="auto"><a id="user-content-fstab" class="anchor" aria-hidden="true" href="#fstab"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>FSTAB</h2>
+                    <p dir="auto">В моей конфигурации оборудования предполагается, что система установлена на SSD диск, а домашняя
+                        папка пользователя - на HDD. Таким образом для того, чтобы я мог пользоваться свои каталогом и для повышения
+                        времени жизни SSD, нужно примонтировать некоторые каталоги определённым образом. В этом поможет
+                        редактирование файла <code>/etc/fstab</code>.</p>
+                    <h3 dir="auto"><a id="user-content-монтирование-домашнего-каталога" class="anchor" aria-hidden="true"
+                            href="#монтирование-домашнего-каталога"><svg class="octicon octicon-link" viewBox="0 0 16 16"
+                                version="1.1" width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Монтирование домашнего каталога</h3>
+                    <p dir="auto">Так как мой <code>$HOME</code> отформатирован в ext4, то я и не стал особо изгаляться и сделал
+                        запись по умолчанию для данной файловой системы. Хотя можно прописать правила для назначения прав и
+                        пользователей, но практика показывает, что всё это очень больно бьёт по функционалу: то права не
+                        переназначишь, то пользователь отдельных каталогов слетает после перезагрузки. Поэтому сначала определяем
+                        при помощи <code>lsblk</code> с именем устройства, на котором расположен наш будущий $HOME, а потом
+                        стремимся в <code>/etc/fstab</code> записать следующую строку:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="UUID=xxx /home  ext4  defaults  0 0">
+                        <pre>UUID=xxx /home  ext4  defaults  0 0</pre>
+                    </div>
+                    <p dir="auto">Как узнать, а главное перенести в <code>/etc/fstab</code> UUID? Воспользуемся командой
+                        <code>sudo blkid /dev/sdX</code></p>
+                    <p dir="auto">Подробнее о работе с <code>/etc/fstab</code> у меня расписано <a
+                            href="/boyko1989/ITCO/blob/linux_desktop/practice/administration/desktop/01-installation/fstab.md">здесь</a>
+                    </p>
+                    <p dir="auto">Да, может возникнуть вопрос: "Зачем ставить SSD, если всё равно $HOME на HDD?" Да, это правильный
+                        вопрос, но меня вполне устраивала скорость работы системы после загрузки, а вот ЗАГРУЗКА... После установки
+                        SSD, загрузка перестала быть бесконечной, и даже до установки 16 ГБ ОЗУ система начала работать быстрее.</p>
+                    <h3 dir="auto"><a id="user-content-монтирование-каталога-tmp" class="anchor" aria-hidden="true"
+                            href="#монтирование-каталога-tmp"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Монтирование каталога <code>/tmp</code></h3>
+                    <p dir="auto">Данный каталог перезаписывается при каждой перезагрузке системы. Поэтому при использовании
+                        SSD-накопителя для системы, было бы разумно перенести этот каталог на другое устройство. Конечно, можно
+                        выделить область на HDD, но так как у нас очень много оперативной памяти, то некоторую её часть я выделю для
+                        каталога <code>/tmp</code>.</p>
+                    <p dir="auto">Для того, чтобы удостовериться в размере оперативки, воспользуемся командой
+                        <code>sudo dmidecode --type 17 | grep -i size | awk '{print $2}'</code>. Складываем значения и получаем
+                        количество "гигов".</p>
+                    <p dir="auto">Устройством, которое в Linux представяет собой оперативную память является <code>/dev/shm</code>.
+                        Проверив его размер командой <code>df -h /dev/shm</code> можно удивиться, что размер там в два раза меньше,
+                        чем общий объём наших считанных планок.</p>
+                    <p dir="auto">Смонтируем <code>tmpfs</code> в RAM:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo echo -e 'tmpfs\t/dev/shm\ttmpfs\tdefaults,size=2G\t0\t0' &gt;&gt; /etc/fstab">
+                        <pre>sudo <span class="pl-c1">echo</span> -e <span class="pl-s"><span class="pl-pds">'</span>tmpfs\t/dev/shm\ttmpfs\tdefaults,size=2G\t0\t0<span class="pl-pds">'</span></span> <span class="pl-k">&gt;&gt;</span> /etc/fstab</pre>
+                    </div>
+                    <p dir="auto">Затем выделенный RAM выделим на <code>/tmp</code></p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo echo -e 'tmpfs\t/tmp\ttmpfs\trw,nodev,nosuid,size=2G\t0\t0' &gt;&gt; /etc/fstab">
+                        <pre>sudo <span class="pl-c1">echo</span> -e <span class="pl-s"><span class="pl-pds">'</span>tmpfs\t/tmp\ttmpfs\trw,nodev,nosuid,size=2G\t0\t0<span class="pl-pds">'</span></span> <span class="pl-k">&gt;&gt;</span> /etc/fstab</pre>
+                    </div>
+                    <p dir="auto">Перезагружаемся и работаем с уже корректно смонтрованными каталогами.</p>
+                    <h2 dir="auto"><a id="user-content-установка-пакетов" class="anchor" aria-hidden="true"
+                            href="#установка-пакетов"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16"
+                                height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Установка пакетов</h2>
+                    <p dir="auto">Разделим пакеты на те, что есть в репозиториях дистрибутива, те, которые устанавливаются из своих
+                        репозиториев, и те, которые устанавливаются из deb-пакетов.</p>
+                    <h3 dir="auto"><a id="user-content-установка-пакетов-из-репозитория" class="anchor" aria-hidden="true"
+                            href="#установка-пакетов-из-репозитория"><svg class="octicon octicon-link" viewBox="0 0 16 16"
+                                version="1.1" width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Установка пакетов из репозитория</h3>
+                    <p dir="auto">Дам большую команду, которая позволит установить все требуемые мне пакеты:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo apt install -y software-properties-common apt-transport-https htop zip unzip tar curl wget rsync git mc tilda tilix tmux openssh-server vim bluefish mousepad okular speedcrunch rhythmbox libfuse2 zsh fonts-powerline qbittorrent snapd fuse binutils gstreamer1.0-pulseaudio nmap arp-scan geary blueman bluetooth bluez bluez-tools ristretto">
+                        <pre>sudo apt install -y software-properties-common apt-transport-https htop zip unzip tar curl wget rsync git mc tilda tilix tmux openssh-server vim bluefish mousepad okular speedcrunch rhythmbox libfuse2 zsh fonts-powerline qbittorrent snapd fuse binutils gstreamer1.0-pulseaudio nmap arp-scan geary blueman bluetooth bluez bluez-tools ristretto</pre>
+                    </div>
+                    <h3 dir="auto"><a id="user-content-пакеты-из-сторонних-репозиториев" class="anchor" aria-hidden="true"
+                            href="#пакеты-из-сторонних-репозиториев"><svg class="octicon octicon-link" viewBox="0 0 16 16"
+                                version="1.1" width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Пакеты из сторонних репозиториев</h3>
+                    <p dir="auto">К таким в первую очередь отнесём Google Chrome, VS Code. Как номенклатуру продуктов, к которой
+                        нуже особый подход, будем воспринимать JetBrains Toolbox.</p>
+                    <p dir="auto">Рассмотрим общий порядок работы со сторонними пакетами.</p>
+                    <ul dir="auto">
+                        <li>загрузить ключ репозитория</li>
+                        <li>добавить сам репозиторий</li>
+                        <li>обновить список пакетов</li>
+                    </ul>
+                    <blockquote>
+                        <p dir="auto">Команды для работы с репозиториями и ключами <a
+                                href="/boyko1989/ITCO/blob/linux_desktop/practice/administration/desktop/01-installation/key-work.md">здесь</a>
+                        </p>
+                    </blockquote>
+                    <h4 dir="auto"><a id="user-content-google-chrome" class="anchor" aria-hidden="true" href="#google-chrome"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Google Chrome</h4>
+                    <p dir="auto"><strong><em>Подготовка и условия</em></strong></p>
+                    <p dir="auto">Скажу сразу, что при установке этого браузера у меня происходило странное явление, вернее сказать
+                        полное отсутствие каких-либо ожидаемых явлений при вызове установленного пакета
+                        <code>google-chrome-stable</code>.</p>
+                    <p dir="auto">Первым делом я пыался исправить ситуацию тем, что удалял браузер с корнем:
+                        <code>sudo apt purge google-chrome-stable</code> и ручным затиранием каталога конфигурации в домашней
+                        директории: <code>rm -rf ~/.config/google-chrome</code></p>
+                    <p dir="auto"><strong><em>Установка</em></strong></p>
+                    <p dir="auto">К сожалению на данный момент я несмог найти руководство по установке брауера так чтобы
+                        <strong><em>apt</em></strong> потом не плевался варнингами о Deprecated методах. Поэтому я просто зашёл на
+                        официальный сайт программы и скачал deb-пакет, который установил командой
+                        <code>sudo dpkg -i google-chrome-stable_current_amd64.deb</code></p>
+                    <h4 dir="auto"><a id="user-content-vs-code" class="anchor" aria-hidden="true" href="#vs-code"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>VS Code</h4>
+                    <p dir="auto"><strong><em>Установка</em></strong></p>
+                    <p dir="auto">Добавляем GPG-ключ в хранилище</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg">
+                        <pre>curl -sSL https://packages.microsoft.com/keys/microsoft.asc <span class="pl-k">|</span> sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg</pre>
+                    </div>
+                    <p dir="auto">Добавляем репозиторий Microsoft:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="echo &quot;deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main&quot; | sudo tee /etc/apt/sources.list.d/vscode.list">
+                        <pre><span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main<span class="pl-pds">"</span></span> <span class="pl-k">|</span> sudo tee /etc/apt/sources.list.d/vscode.list</pre>
+                    </div>
+                    <p dir="auto">Обновляем информацию в репозитории и устанавливаем VS Code:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo apt update
+            sudo apt install -y code">
+                        <pre>sudo apt update
+            sudo apt install -y code</pre>
+                    </div>
+                    <p dir="auto"><strong><em>Настройка</em></strong></p>
+                    <p dir="auto">После авторизации VS Code сам подгрузит конфигурации. Они будут находиться в каталоге
+                        <code>~/.config/Code/User/</code> в формате JSON. В случае, если последняя конфигурация была неудачной, а
+                        имеются конфиги с лучшим состоянием, то нужно перекинуть только их в указанную папку. Вот их список:</p>
+                    <ul dir="auto">
+                        <li>keybindings.json</li>
+                        <li>settings.json</li>
+                        <li>syncLocalSettings.json</li>
+                        <li>tasks.json</li>
+                    </ul>
+                    <h4 dir="auto"><a id="user-content-jetbrains-toolbox" class="anchor" aria-hidden="true"
+                            href="#jetbrains-toolbox"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16"
+                                height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>JetBrains Toolbox</h4>
+                    <p dir="auto">Заходим на сайт JetBrains в <a href="https://www.jetbrains.com/toolbox-app/"
+                            rel="nofollow">раздел</a> загрузок продуктов. Выбираем нашу операционную систему и скачиваем архив
+                        *.tar.gz . Затем распаковываем его командой <code>tar xvzf jetbrains-toolbox-xxx.tar.gz</code> В появившемся
+                        каталоге выполняем файл - это и есть JetBrains Toolbox.</p>
+                    <p dir="auto">В трее появляется значок программы и рядом открывается окно. Там первым делом логинимся и
+                        проверяем в открывшейся вкладке браузера какие у нас лицензии. Теперь просто щёлкаем по кнопкам установить
+                        на нужные нам продукты.</p>
+                    <h4 dir="auto"><a id="user-content-viber" class="anchor" aria-hidden="true" href="#viber"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Viber</h4>
+                    <p dir="auto">wget <a href="http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb"
+                            rel="nofollow">http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb</a></p>
+                    <h3 dir="auto"><a id="user-content-snap-пакеты" class="anchor" aria-hidden="true" href="#snap-пакеты"><svg
+                                class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                                aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Snap-пакеты</h3>
+                    <p dir="auto">VLC</p>
+                    <p dir="auto">sudo snap install telegram-desktop</p>
+                    <h2 dir="auto"><a id="user-content-настройка-окружения" class="anchor" aria-hidden="true"
+                            href="#настройка-окружения"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Настройка окружения</h2>
+                    <h3 dir="auto"><a id="user-content-пути-к-основным-каталогам-home" class="anchor" aria-hidden="true"
+                            href="#пути-к-основным-каталогам-home"><svg class="octicon octicon-link" viewBox="0 0 16 16"
+                                version="1.1" width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Пути к основным каталогам $HOME</h3>
+                    <p dir="auto">К основным каталогам в десктопной версии операционной системы относятся каталоги, в которых
+                        хранятся ресурсы разных видов (виде, аудио, картинки, документы), каталог, куда происхоит сохранение
+                        скачиваемых файлов, каталоги с общими ресурсами и шаблонами. На всех них по умолчанию ссылаются различные
+                        программы, которые задействуют файлы тех или иных видов. Поэтому было бы удобнее держать это в порядке.</p>
+                    <p dir="auto">Для этого есть конфигурационный файл <code>~/.config/user-dirs.dirs</code>. У меня рабочая его
+                        часть выглядит следующим образом:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="XDG_DESKTOP_DIR=&quot;$HOME/Desktop&quot;
+            XDG_DOWNLOAD_DIR=&quot;$HOME/Download&quot;
+            XDG_TEMPLATES_DIR=&quot;$HOME/Templates&quot;
+            XDG_PUBLICSHARE_DIR=&quot;$HOME/Share&quot;
+            XDG_DOCUMENTS_DIR=&quot;$HOME/Documents&quot;
+            XDG_MUSIC_DIR=&quot;$HOME/Music&quot;
+            XDG_PICTURES_DIR=&quot;$HOME/Images&quot;
+            XDG_VIDEOS_DIR=&quot;$HOME/Video&quot;
+            XDG_PROJECTS_DIR=&quot;$HOME/Projects&quot;">
+                        <pre>XDG_DESKTOP_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Desktop<span class="pl-pds">"</span></span>
+            XDG_DOWNLOAD_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Download<span class="pl-pds">"</span></span>
+            XDG_TEMPLATES_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Templates<span class="pl-pds">"</span></span>
+            XDG_PUBLICSHARE_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Share<span class="pl-pds">"</span></span>
+            XDG_DOCUMENTS_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Documents<span class="pl-pds">"</span></span>
+            XDG_MUSIC_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Music<span class="pl-pds">"</span></span>
+            XDG_PICTURES_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Images<span class="pl-pds">"</span></span>
+            XDG_VIDEOS_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Video<span class="pl-pds">"</span></span>
+            XDG_PROJECTS_DIR=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/Projects<span class="pl-pds">"</span></span></pre>
+                    </div>
+                    <h3 dir="auto"><a id="user-content-установка-и-настройка-zsh" class="anchor" aria-hidden="true"
+                            href="#установка-и-настройка-zsh"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Установка и настройка ZSH</h3>
+                    <p dir="auto">Мне вместо стандартной оболочки <code>Bash</code> больше нравится использовать оболочку
+                        <code>ZSH</code>.</p>
+                    <p dir="auto">В Ubuntu для установки нужно выполнить команду <code>sudo apt install zsh</code>. Для запуска
+                        оболочки выполняем команду <code>zsh</code>.</p>
+                    <p dir="auto">Для попадания в меню настроек, нажимаем клавишу <strong>1</strong></p>
+                    <ol dir="auto">
+                        <li>Чтобы изменить <strong><em>количество команд</em></strong> (пункт 1), хранящихся в истории, нажимаем на
+                            <strong>3</strong> и вводим нужное количество</li>
+                        <li>Для настройки <strong><em>автодополнения</em></strong> далее выбираем пункт <strong>1</strong> и всё
+                            останется по умолчанию</li>
+                        <li>Далее выбираем <strong><em>стиль раскладки клавиатуры</em></strong> По умолчанию используется стиль
+                            <em>Emacs</em>. Но я, пожалуй, выберу <em>Vim</em> (последовательность <code>3</code> -&gt;
+                            <code>1</code> -&gt; <code>v</code>).</li>
+                        <li>Несколько дополнительных опций, которые можно включить или выключить (<strong>s (set)</strong> или
+                            <strong>u (unset)</strong>):
+                            <ol dir="auto">
+                                <li><strong>Change directory given just path</strong> - смена рабочего каталога отличным от
+                                    испльзования команды <code>cd</code> образом</li>
+                                <li><strong>Use additional pattern matching features</strong> - разрешение на использование
+                                    дополнительных символов для формирования шаблонов поиска (<code>#</code>, <code>~</code>,
+                                    <code>^</code> кроме уже имеющихся <code>*</code> и <code>?</code>)</li>
+                                <li><strong>Unmatched patterns cause an error</strong> - возвращать ли ошибку при отсутствии
+                                    искомого вхождения</li>
+                                <li><strong>Beep on errors</strong> - звуковой сигнал при ошибке</li>
+                                <li><strong>Immediately report changes in background job status</strong> - сообщать об изменении
+                                    статуса фоновых задач</li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p dir="auto">В главном меню сохраняем изменения (<code>0</code> и ещё раз <code>0</code>). В файле
+                        <code>~/.zshrc</code> были изменены некоторые настройки. В этот файл можно добавлять псевдонимы, но
+                        настройки менять можно только через команду <code>zsh-newuser-install</code>. Даже кастовать приглашение для
+                        ввода лучше при помощи изменения переменной среды <code>PS1</code> и сохранением её командой
+                        <code>autoload -U colors &amp;&amp; colors</code>.</p>
+                    <h4 dir="auto"><a id="user-content-установка-oh-my-zsh" class="anchor" aria-hidden="true"
+                            href="#установка-oh-my-zsh"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Установка oh my zsh</h4>
+                    <p dir="auto">Скрипт <strong>oh my zsh</strong> реализует множество дополнительных возможностей в zsh. Например
+                        можно выбрать тему из <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">списка</a>. Мне очень
+                        нравится тема <strong><em>amuse</em></strong></p>
+                    <p dir="auto">Итак, <strong>установка</strong>:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh">
+                        <pre>curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="pl-k">|</span> sh</pre>
+                    </div>
+                    <p dir="auto">Выполненный в домашней папке пользователя, этот скрипт установить все плагины и темы для zsh в
+                        <code>/home/&lt;user&gt;</code> и полностью заменит файл <code>./zshrc</code> на свой.</p>
+                    <p dir="auto">Для установки темы нужно открыть файл <code>./zshrc</code> и отредактировать настройку
+                        <code>ZSH_THEME</code>. В <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">описании</a> темы может
+                        быть информация о необходимости установки дополнительных шрифтов. Это можно сделать при помощи команды</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="sudo apt install fonts-powerline">
+                        <pre>sudo apt install fonts-powerline</pre>
+                    </div>
+                    <h4 dir="auto"><a id="user-content-установка-оболочки-по-умолчанию" class="anchor" aria-hidden="true"
+                            href="#установка-оболочки-по-умолчанию"><svg class="octicon octicon-link" viewBox="0 0 16 16"
+                                version="1.1" width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Установка оболочки по умолчанию</h4>
+                    <p dir="auto">Скорее всего введя команду <code>echo $SHELL</code> мы увидим следующий вывод
+                        <code>/bin/bash</code>. Это говорит о том, что при следующей загрузке, нужно будет снова выполнить команду
+                        <code>zsh</code>, чтобы пользоваться новой оболочкой. Сделаем же <strong>ZSH</strong> оболочкой по
+                        умолчанию. Для начала уточним, где была установлена оболочка командой <code>which zsh</code>, а потом
+                        выполним следующее:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="chsh
+            Password:
+            Changing the login shell for p_boyko
+            Enter the new value, or press ENTER for the default
+            	Login Shell [/bin/bash]:
+            ">
+                        <pre>chsh
+            Password:
+            Changing the login shell <span class="pl-k">for</span> p_boyko
+            Enter the new value, or press ENTER <span class="pl-k">for</span> the default
+            	Login Shell [/bin/bash]:
+            </pre>
+                    </div>
+                    <p dir="auto">Вводим <code>/bin/zsh</code> (как результат <code>which zsh</code>) и, хотя команда
+                        <code>echo $SHELL</code> так и будет выводить <code>/bin/bash</code>, но при следующей загрузке системы
+                        текущий пользователь при выполнении этой же команды увидит zsh.</p>
+                    <p dir="auto"><a href="https://github.com/unixorn/awesome-zsh-plugins">Здесь</a> есть инструкции по установке
+                        различных плагинов.</p>
+                    <h2 dir="auto"><a id="user-content-настройка-интерфейса" class="anchor" aria-hidden="true"
+                            href="#настройка-интерфейса"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Настройка интерфейса</h2>
+                    <h3 dir="auto"><a id="user-content-работа-с-клавиатурой" class="anchor" aria-hidden="true"
+                            href="#работа-с-клавиатурой"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Работа с клавиатурой</h3>
+                    <p dir="auto">Самая первая проблема - это настройка раскладок клавиатуры. По умолчанию, почему-то переключение
+                        выключено. Поэтому заходим в <strong><em>Applications Menu</em></strong> -&gt; <strong><em>Диспетчер
+                                настроек</em></strong> -&gt; <strong><em>Оборудование:Клавиатура</em></strong> и во вкладке
+                        <strong><em>Раскладка</em></strong> отключаем "Использовать системные насеройки по умолчанию". Ниже выбираем
+                        в выпаающем меню <strong><em>Изменить параметры раскладки</em></strong> то сочетание клавиш, которое нам
+                        удобно.</p>
+                    <p dir="auto">Про "низкоуровневую" работу с клавиатурой <a
+                            href="/boyko1989/ITCO/blob/linux_desktop/practice/administration/desktop/01-installation/keyboard.md">здесь</a>
+                    </p>
+                    <h3 dir="auto"><a id="user-content-работа-с-мониторами" class="anchor" aria-hidden="true"
+                            href="#работа-с-мониторами"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Работа с мониторами</h3>
+                    <p dir="auto">XRandR — расширение X сервера, позволяющее производить настройки режимов работы мониторов. Для
+                        того, чтобы мне настроить мои мониторы в наиболее комфортном режим мне нужно ввести команду:</p>
+                    <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"
+                        data-snippet-clipboard-copy-content="xrandr \
+            # Втсроенный дисплей ноутбука
+            --output LVDS-1 \
+            --off \               # отключаем дисплей
+            # Монитор BENQ EW3270ZL
+            --output HDMI-1 \
+            --primary \           # помечаем как основной монитор
+            --mode 1920x1080 \    # задаём разрешение
+            --pos 0x0 \           # позиционируем его относительно начала кооррдинат
+            --rotate normal       # задаём стандартное положение изображения
+            # Монитор HP L1750 - боковой
+            --output VGA-1 \
+            --mode 1024x768 \     # задаём разрешение
+            --pos 1920x0 \        # позиционируем его относительно начала кооррдинат
+            --rotate normal \     # задаём стандартное положение изображения
+            # В душе не представляю что это...
+            --output DP-1 \
+            --off                 # ...но это что-то отключено">
+                        <pre>xrandr \
+            <span class="pl-c"><span class="pl-c">#</span> Втсроенный дисплей ноутбука</span>
+            --output LVDS-1 \
+            --off <span class="pl-cce">\ </span>              <span class="pl-c"><span class="pl-c">#</span> отключаем дисплей</span>
+            <span class="pl-c"><span class="pl-c">#</span> Монитор BENQ EW3270ZL</span>
+            --output HDMI-1 \
+            --primary <span class="pl-cce">\ </span>          <span class="pl-c"><span class="pl-c">#</span> помечаем как основной монитор</span>
+            --mode 1920x1080 <span class="pl-cce">\ </span>   <span class="pl-c"><span class="pl-c">#</span> задаём разрешение</span>
+            --pos 0x0 <span class="pl-cce">\ </span>          <span class="pl-c"><span class="pl-c">#</span> позиционируем его относительно начала кооррдинат</span>
+            --rotate normal       <span class="pl-c"><span class="pl-c">#</span> задаём стандартное положение изображения</span>
+            <span class="pl-c"><span class="pl-c">#</span> Монитор HP L1750 - боковой</span>
+            --output VGA-1 \
+            --mode 1024x768 <span class="pl-cce">\ </span>    <span class="pl-c"><span class="pl-c">#</span> задаём разрешение</span>
+            --pos 1920x0 <span class="pl-cce">\ </span>       <span class="pl-c"><span class="pl-c">#</span> позиционируем его относительно начала кооррдинат</span>
+            --rotate normal <span class="pl-cce">\ </span>    <span class="pl-c"><span class="pl-c">#</span> задаём стандартное положение изображения</span>
+            <span class="pl-c"><span class="pl-c">#</span> В душе не представляю что это...</span>
+            --output DP-1 \
+            --off                 <span class="pl-c"><span class="pl-c">#</span> ...но это что-то отключено</span></pre>
+                    </div>
+                    <p dir="auto">Всё это нужно переписать в одну строчку и сохранить в файле <code>~/.xprofile</code> чтобы
+                        конфигурация сохранилась после перезагрузки или перелогинки.</p>
+                    <h3 dir="auto"><a id="user-content-отключение-блокировки-экрана" class="anchor" aria-hidden="true"
+                            href="#отключение-блокировки-экрана"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1"
+                                width="16" height="16" aria-hidden="true">
+                                <path
+                                    d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z">
+                                </path>
+                            </svg></a>Отключение блокировки экрана</h3>
+                    <p dir="auto"><code>xset -dpms &amp;&amp; xset s off</code></p>
+                </article>
+            </div>
+            
+            </div>
+            
+            </readme-toc>
+</body>
+</html>
