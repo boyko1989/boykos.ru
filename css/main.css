@@ -1,0 +1,122 @@
+/* >>>>> normalize */
+
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    line-height: 1;
+    /*text-rendering: optimizeLegibility;*/
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+/* >>>>> END normalize */
+
+body {
+    width: 35em;
+    font-weight: 700;
+    margin: 0 auto;
+    font-family: 'Victor Mono', mono;
+}
+
+h1 {
+    width: 100em;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+p {
+    margin: 15px 0 5px 0;
+}
+
+ul {
+    margin: 20px 0 20px 0;
+}
+
+ul>li {
+    margin: 0 0 0 50px;
+}
+
+._container {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.heading {
+    margin: 50px 0 30px 0;
+}
